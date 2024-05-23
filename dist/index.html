@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+</head>
+<body>
+  <div id="root">
+    <header-component></header-component>
+<main>
+  <h2>Welcome to the homepage</h2>
+</main>
+<footer-component></footer-component>
+
+  </div>
+
+  <script type="module">
+    // Register custom elements
+    class HeaderComponent extends HTMLElement {
+      constructor() {
+        super();
+        const template = document.getElementById('header-template');
+        const shadowRoot = this.attachShadow({ mode: 'open' });
+        shadowRoot.appendChild(template.content.cloneNode(true));
+      }
+    }
+
+    class FooterComponent extends HTMLElement {
+      constructor() {
+        super();
+        const template = document.getElementById('footer-template');
+        const shadowRoot = this.attachShadow({ mode: 'open' });
+        shadowRoot.appendChild(template.content.cloneNode(true));
+      }
+    }
+
+    customElements.define('header-component', HeaderComponent);
+    customElements.define('footer-component', FooterComponent);
+  </script>
+
+  <!-- Declarative Shadow DOM Templates -->
+  <template id="header-template" shadowroot="open">
+    <header>
+      <h1>My Website</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/about-us.html">About Us</a>
+      </nav>
+    </header>
+  </template>
+  <template id="footer-template" shadowroot="open">
+    <footer>
+      <p>&copy; 2024 My Website</p>
+    </footer>
+  </template>
+  
+</body>
+</html>
